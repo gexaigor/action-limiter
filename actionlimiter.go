@@ -15,10 +15,8 @@ type actionLimit struct {
 
 // NewActionLimiter returns the implementation of the ActionLimiter interface
 func NewActionLimiter(limit int, delay time.Duration) ActionLimiter {
-	ch := make(chan struct{}, limit)
-
 	al := &actionLimit{
-		ch: ch,
+		ch: make(chan struct{}, limit),
 	}
 	go func() {
 		for {
