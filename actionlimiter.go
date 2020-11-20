@@ -30,7 +30,7 @@ func NewActionLimiter(limit int, delay time.Duration) ActionLimiter {
 	return al
 }
 
-// Wait implements the limiter.ActionLimiter interface.
+// Wait implements the limiter.ActionLimiter interface
 func (al *actionLimit) Wait() {
 	<-al.ch
 }
