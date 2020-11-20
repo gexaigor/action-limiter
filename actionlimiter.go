@@ -3,7 +3,7 @@ package limiter
 import "time"
 
 // ActionLimiter is the interface that wraps the basic Wait method.
-// Wait method blocks the thread if more capacity actions have already been performed
+// Wait method blocks the thread if more limit actions have already been performed
 type ActionLimiter interface {
 	Wait()
 }
