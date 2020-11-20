@@ -1,0 +1,12 @@
+language: go
+go:
+  - "1.15"
+  - "main"
+before_install:
+  - go get github.com/stretchr/testify
+  - go get github.com/client9/misspell/cmd/misspell
+before_script:
+  - go vet .
+script:
+  - go test -v
+  - misspell -locale US -error *.md *.go
