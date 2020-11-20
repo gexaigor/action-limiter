@@ -1,5 +1,5 @@
 # Action limiter
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Go Report Card](https://goreportcard.com/badge/github.com/gexaigor/action-limiter)](https://goreportcard.com/report/github.com/gexaigor/action-limiter)
 
 The Action limiter package allows you to limit the number of actions at a time. Wait method blocks the thread if more limit actions have already been performed.
 
