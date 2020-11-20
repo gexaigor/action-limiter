@@ -14,7 +14,7 @@ type actionLimit struct {
 }
 
 // NewActionLimiter returns the implementation of the ActionLimiter interface
-func NewActionLimiter(limit int, duration time.Duration) ActionLimiter {
+func NewActionLimiter(limit int, delay time.Duration) ActionLimiter {
 	ch := make(chan struct{}, limit)
 
 	al := &actionLimit{
@@ -25,14 +25,14 @@ func NewActionLimiter(limit int, duration time.Duration) ActionLimiter {
 			for i := len(al.ch); i < cap(al.ch); i++ {
 				al.ch <- struct{}{}
 			}
-			time.Sleep(duration)
+			time.Sleep(delay)
 		}
 	}()
 
 	return al
 }
 
-// Wait method blocks the thread if more capacity actions have already been performed
+// Wait implements the limiter.ActionLimiter interface.
 func (al *actionLimit) Wait() {
 	<-al.ch
 }
