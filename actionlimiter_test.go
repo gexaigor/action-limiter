@@ -8,17 +8,7 @@ import (
 )
 
 func TestActionLimit_Wait(t *testing.T) {
-	al := &actionLimit{
-		ch: make(chan struct{}, 2),
-	}
-	go func() {
-		for {
-			for i := len(al.ch); i < cap(al.ch); i++ {
-				al.ch <- struct{}{}
-			}
-			time.Sleep(time.Second)
-		}
-	}()
+	al := New(2, time.Second)
 
 	testCases := []struct {
 		name          string
