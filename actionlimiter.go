@@ -13,8 +13,8 @@ type actionLimit struct {
 	ch chan struct{}
 }
 
-// NewActionLimiter returns the implementation of the ActionLimiter interface
-func NewActionLimiter(limit int, delay time.Duration) ActionLimiter {
+// New returns the implementation of the ActionLimiter interface
+func New(limit int, delay time.Duration) ActionLimiter {
 	al := &actionLimit{
 		ch: make(chan struct{}, limit),
 	}

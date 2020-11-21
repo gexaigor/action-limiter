@@ -18,7 +18,7 @@ In this example, the action limiter controls the launch of no more than 5 gorout
 ```go
 func main() {
 	var wg sync.WaitGroup
-	al := limiter.NewActionLimiter(5, time.Second*2)
+	al := limiter.New(5, time.Second*2)
 	for i := 0; i < 20; i++ {
 		al.Wait()
 		wg.Add(1)
