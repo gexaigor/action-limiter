@@ -14,21 +14,32 @@ go get github.com/gexaigor/action-limiter
 ```
 
 ### Usage
-In this example, the action limiter controls the launch of no more than 5 goroutines every 2 seconds.
+This example demonstrates limiting the output rate to 2 times per second.
 ```go
 func main() {
-	var wg sync.WaitGroup
-	al := limiter.New(5, time.Second*2)
-	for i := 0; i < 20; i++ {
+	al := limiter.New(2, time.Second)
+	begin := time.Now()
+	for i := 0; i < 10; i++ {
 		al.Wait()
-		wg.Add(1)
-		go do(i, &wg)
+		fmt.Printf("%d started at %s\n", i, time.Now().Sub(begin))
+		//...
 	}
-	wg.Wait()
-}
-
-func do(i int, wg *sync.WaitGroup) {
-	fmt.Println(i)
-	wg.Done()
 }
 ```
+
+Output:
+```sh
+0 started at 0s
+1 started at 997.8µs
+2 started at 1.0021138s
+3 started at 1.0023405s
+4 started at 2.0026946s
+5 started at 2.0026946s
+6 started at 3.0173932s
+7 started at 3.0183951s
+8 started at 4.0252897s
+9 started at 4.0252897s
+```
+
+### Author
+ - [gexaigor](https://github.com/gexaigor "gexaigor")
