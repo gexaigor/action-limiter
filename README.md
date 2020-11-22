@@ -14,7 +14,7 @@ go get github.com/gexaigor/action-limiter
 ```
 
 ### Usage
-Wait()
+##### Wait()
 This example demonstrates limiting the output rate to 2 times per second.
 ```go
 func main() {
@@ -42,7 +42,7 @@ Output:
 9 started at 4.0252897s
 ```
 
-Try()
+##### Try()
 This example demonstrates the ability to perform other actions while the limit is over.
 ```go
 func main() {

@@ -31,6 +31,7 @@ func New(limit int, interval time.Duration) ActionLimiter {
 	return al
 }
 
+// fillChan fills the chan to the end
 func (al *actionLimit) fillChan() {
 	for i := len(al.ch); i < cap(al.ch); i++ {
 		al.ch <- struct{}{}
