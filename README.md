@@ -14,6 +14,7 @@ go get github.com/gexaigor/action-limiter
 ```
 
 ### Usage
+Wait()
 This example demonstrates limiting the output rate to 2 times per second.
 ```go
 func main() {
@@ -39,6 +40,36 @@ Output:
 7 started at 3.0183951s
 8 started at 4.0252897s
 9 started at 4.0252897s
+```
+
+Try()
+This example demonstrates the ability to perform other actions while the limit is over.
+```go
+func main() {
+	al := limiter.New(5, time.Second)
+	begin := time.Now()
+	for i := 0; i < 10; i++ {
+		if al.Try() {
+			fmt.Printf("%d started at %s\n", i, time.Now().Sub(begin))
+		} else {
+			fmt.Println("wait a bit")
+		}
+	}
+}
+```
+
+Output
+```sh
+0 started at 0s
+1 started at 0s
+2 started at 1.9987ms
+3 started at 2.998ms
+4 started at 2.998ms
+wait a bit
+wait a bit
+wait a bit
+wait a bit
+wait a bit
 ```
 
 ### Author
