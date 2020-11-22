@@ -3,8 +3,6 @@ package limiter
 import (
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestActionLimit_Wait(t *testing.T) {
@@ -38,7 +36,9 @@ func TestActionLimit_Wait(t *testing.T) {
 				c = false
 			}()
 			al.Wait()
-			assert.Equal(t, c, tc.expected)
+			if c != tc.expected {
+				t.Error()
+			}
 		})
 	}
 }
@@ -68,7 +68,9 @@ func TestActionLimit_Try(t *testing.T) {
 			for i := 0; i < tc.quantityCalls; i++ {
 				al.Wait()
 			}
-			assert.Equal(t, al.Try(), tc.expected)
+			if al.Try() != tc.expected {
+				t.Error()
+			}
 		})
 	}
 }

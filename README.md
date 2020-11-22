@@ -6,7 +6,7 @@ The Action limiter is very simple package allows you to limit the number of acti
 ### Features
  - small and simple API
  - thread safe
- - low memory usage
+ - zero dependencies
 
 ### Install
 ```sh
